@@ -1,0 +1,8 @@
+
+services:
+  bot:
+    build: .
+    container_name: dockerverse
+    volumes:
+      - .:/root/dockerVerse
+      - /var/run/docker.sock:/var/run/docker.sock

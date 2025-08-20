@@ -203,7 +203,7 @@ __marimo__/
 
 
 # Environments
-.env
+.env/
 .envrc
 .venv
 env/
