@@ -45,7 +45,7 @@ nano .env
 ```
 4. Try running the application using `docker-compose`.
 ```bash
-docker-compose --build up
+docker-compose up --build
 ```
 5. Run the application in detached mode.
 ```bash
