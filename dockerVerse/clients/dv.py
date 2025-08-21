@@ -20,11 +20,13 @@ class DvClient:
         self.add_event_handlers()
         self.bot.start()
 
-        dv_log.info("DockerVerse Is Running")
+        dv_log.info("DockerVerse Started")
         
         idle()
 
         self.cleanup()
+
+        dv_log.info("DockerVerse Stopped")
     
     def cleanup(self):
         self.docker.stop_event_observer()
@@ -60,11 +62,11 @@ class DvClient:
             return
         
         await self.bot.broadcast(bold_text(f"`{event.container_name}` {updated_status}"))
-        event_log.info(f"{updated_status} CONTAINER {event.container_id} {event.container_name}")
+        event_log.info(f"DOCKER_EVENT {updated_status} CONTAINER {event.container_id} {event.container_name}")
     
     def log_user_action(self, container: DvContainer, user_id: int, method: str):
         event_log.info(
-            f"USER:{user_id} ACTION:{method} CONTAINER: `{container.id}` `{container.name}`"
+            f"ACTION:{method} USER:{user_id} CONTAINER: `{container.id}` `{container.name}`"
         )
 
 
