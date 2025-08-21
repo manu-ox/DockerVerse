@@ -27,3 +27,31 @@ Telegram bot to manage docker containers.
 - `PROTECTED_CONTAINER_IDS`: Ids of containers to protect.
 - `ALLOWED_CONTAINER_IDS`: Ids of containers allowed to access.
 - `CONTAINER_IDS_TO_IGNORE`: Ids of containers to ignore. Have no effect if `ALLOWED_CONTAINER_IDS` is specified.
+
+
+## Setup
+1. Clone this repository and navigate to the project directory.
+```bash
+git clone https://github.com/manu-ox/DockerVerse.git && cd DockerVerse
+```
+2. Copy file `.env-sample` to `.env`
+```bash
+cp .env-sample .env
+```
+3. Edit the `.env` file, fill the environment variables and save the file.
+```bash
+nano .env
+```
+4. Try running the application using `docker-compose`.
+```bash
+docker-compose --build up
+```
+5. Run the application in detached mode.
+```bash
+docker-compose up -d
+```
+
+
+## Credits
+- [docker-py](https://github.com/docker/docker-py)
+- [pyrogram](https://github.com/TelegramPlayground/pyrogram)
