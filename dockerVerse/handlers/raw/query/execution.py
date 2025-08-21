@@ -61,7 +61,7 @@ async def control_execution(client: DvClient, query: CallbackQuery, container: D
         start_time = datetime.now()
         fn(container.id)
 
-        await client.log_user_action(
+        client.log_user_action(
             container, query.from_user.id, method
         )
 
