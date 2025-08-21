@@ -8,6 +8,7 @@ Telegram bot to manage docker containers.
 - Retrive logs by time and number of lines.
 - Allow multiple users to manage.
 - Can be executed locally or on a server with same minimal config.
+- Keeps track of Docker events and user actions in `event.log` file.
 
 
 ## Pre-requisites
