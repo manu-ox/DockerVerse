@@ -34,11 +34,11 @@ class Click:
 
 
 async def control_execution(client: DvClient, query: CallbackQuery, container: DvContainer, method: str):
+    if is_protected_container(container.id):
+        return await query.answer(f"Container {container.name} is Protected")
+    
     if Click.count(query.data) < 2:
         return await query.answer("Click again to Confirm", show_alert=True)
-    
-    if is_protected_container(container.id):
-        return await query.answer(f"Container {container.id} is Protected")
     
     process_message = await client.bot.send_message(
         chat_id=query.from_user.id,
