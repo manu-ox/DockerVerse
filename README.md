@@ -56,3 +56,7 @@ docker-compose up -d
 ## Credits
 - [docker-py](https://github.com/docker/docker-py)
 - [pyrogram](https://github.com/TelegramPlayground/pyrogram)
+
+<br>
+
+[![](https://xstats.xoid.me/stats/manu-ox/DockerVerse)](https://stats.xoid.me/stats/manu-ox/DockerVerse)
