@@ -30,11 +30,11 @@ def bot_handler(func: Callable[[DvClient, Message | CallbackQuery], None]):
     async def wrapper(client: DvClient, request: Message | CallbackQuery):
         try:
             await func(client, request)
+        except docker_errors.NotFound as e:
+            await respond(request, "#ERROR: Container not found!")
         except docker_errors.APIError as e:
             dv_log.error(traceback.format_exc(), exc_info=True)
             await respond(request, f"#ERROR: Docker Api failed")
-        except docker_errors.NotFound:
-            await respond(request, "#ERROR: Container not found!")
         except dv_errors.ContainerProtectedError:
             await respond(request, "#ERROR: Container Protected!")
         except dv_errors.ContainerAccessProhibitedError:
