@@ -6,7 +6,7 @@ def get_enabled_commands() -> list[CommandHandler]:
     for command in Commands.ENABLED_COMMANDS:
 
         try:
-            getattr(command, 'raw_handler')  # noqa
+            command.raw_handler  # noqa: B018
         except AttributeError:
             raise KeyError(f"Handler function not set for {command.__class__.__name__}") from None
         
@@ -16,7 +16,7 @@ def get_enabled_commands() -> list[CommandHandler]:
 def get_enabled_buttons() -> list[ButtonHandler]:
     for button in Buttons.ENABLED_BUTTONS:
         try:
-            getattr(button, 'raw_handler')  # noqa
+            button.raw_handler  # noqa: B018
         except AttributeError:
             raise KeyError(f"Handler function not set for {button.__class__.__name__}") from None
         
