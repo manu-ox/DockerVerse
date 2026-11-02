@@ -1,6 +1,5 @@
 import logging
 
-
 dv_log = logging.getLogger("dockerVerse")
 dv_log.setLevel(logging.INFO)
 

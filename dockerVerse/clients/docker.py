@@ -1,20 +1,22 @@
+import asyncio
+from collections.abc import Callable
+from datetime import datetime, timedelta
+from threading import Thread
+
 from docker import DockerClient
 from docker.errors import DockerException
 from docker.models.containers import Container
-from threading import Thread
-from datetime import datetime, timedelta
-from typing import Callable
-import asyncio
 
 from dockerVerse import errors
-from dockerVerse.utils import error_handler
-from .types import DvContainer, DvEvent
-from .utils import ContainerLog
 from dockerVerse.config import (
+    DOCKER_SOCKET,
     is_accessible_container,
     is_protected_container,
-    DOCKER_SOCKET
 )
+from dockerVerse.utils import error_handler
+
+from .types import DvContainer, DvEvent
+from .utils import ContainerLog
 
 
 class DvDockerClient:
@@ -24,7 +26,7 @@ class DvDockerClient:
         try:
             self._docker_client = DockerClient(base_url=DOCKER_SOCKET)
         except DockerException:
-            raise errors.DockerDaemonConnectionError()
+            raise errors.DockerDaemonConnectionError() from None
     
     def get_container(self, container_id: str) -> DvContainer:
         container = self._docker_client.containers.get(container_id)
@@ -36,13 +38,13 @@ class DvDockerClient:
     
     def get_all_containers(self) -> list[DvContainer]:
         containers: list[Container] = self._docker_client.containers.list(all=True)
-        dvContainers = [
+        dv_containers = [
             DvContainer(c)
             for c in containers
             if is_accessible_container(c.short_id)
         ]
-        dvContainers.sort(key=lambda c: c.name)  # sorting by name
-        return dvContainers
+        dv_containers.sort(key=lambda c: c.name)  # sorting by name
+        return dv_containers
     
     def start_container(self, container_id: str):
         container = self._docker_client.containers.get(container_id)

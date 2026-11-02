@@ -1,11 +1,12 @@
-from pyrogram.handlers import MessageHandler, CallbackQueryHandler
 from pyrogram import idle
+from pyrogram.handlers import CallbackQueryHandler, MessageHandler
+
+from dockerVerse.logger import dv_log, event_log
+from dockerVerse.utils import bold_text
 
 from .bot import DvBotClient
 from .docker import DvDockerClient
-from .types import DvEvent, DockerEventType, DvEventStatus, DvContainer
-from dockerVerse.logger import event_log, dv_log
-from dockerVerse.utils import bold_text
+from .types import DockerEventType, DvContainer, DvEvent, DvEventStatus
 
 
 class DvClient:
@@ -49,7 +50,8 @@ class DvClient:
 
     async def docker_event_handler(self, event: DvEvent):
         # Ignoring other events
-        if event.type != DockerEventType.CONTAINER: return
+        if event.type != DockerEventType.CONTAINER:
+            return
 
         if event.status == DvEventStatus.STARTED:
             updated_status = 'STARTED'

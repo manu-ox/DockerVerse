@@ -1,10 +1,10 @@
-from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 from enum import Enum, auto
 
-from dockerVerse.utils import bold_text
-from dockerVerse.handlers import Buttons
-from dockerVerse import DvClient
+from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 
+from dockerVerse import DvClient
+from dockerVerse.handlers import Buttons
+from dockerVerse.utils import bold_text
 
 
 class ViewOptions(Enum):

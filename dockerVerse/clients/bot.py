@@ -1,10 +1,9 @@
 import pyrogram
+from pyrogram.enums import ParseMode
 from pyrogram.errors import PeerIdInvalid, UserIsBlocked
 from pyrogram.types import CallbackQuery
-from pyrogram.enums import ParseMode
 
 from dockerVerse import config
-
 
 
 class DvBotClient(pyrogram.Client):
@@ -30,4 +29,5 @@ class DvBotClient(pyrogram.Client):
     async def acknowledge_query(query: CallbackQuery):
         try:
             await query.answer()
-        except: pass
+        except Exception:
+            pass

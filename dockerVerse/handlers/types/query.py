@@ -1,5 +1,5 @@
 from . import base
-from .methods import SimpleButtonFormat, ContainerMethod, LogsMethod
+from .methods import ContainerMethod, LogsMethod, SimpleButtonFormat
 
 
 class ContainerListButton(base.ButtonHandler):

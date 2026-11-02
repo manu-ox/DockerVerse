@@ -1,7 +1,7 @@
-import dotenv
 import os
 import socket
 
+import dotenv
 
 dotenv.load_dotenv()
 
@@ -24,7 +24,7 @@ def _convert_to_user_id(user_id: str) -> str:
         return int(user_id)
     except ValueError:
         # User id should be an integer
-        raise ValueError(f"Invalid User ID: {user_id}")
+        raise ValueError(f"Invalid User ID: {user_id}") from None
 
 
 def _convert_to_short_container_id(container_id: str) -> str:
@@ -32,7 +32,7 @@ def _convert_to_short_container_id(container_id: str) -> str:
         return container_id[:12]
     except KeyError:
         # Short container id is of length 12
-        raise ValueError(f"Invalid Container ID: {container_id}")
+        raise ValueError(f"Invalid Container ID: {container_id}") from None
 
 
 

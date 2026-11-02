@@ -1,13 +1,10 @@
 from datetime import datetime
+from time import gmtime, strftime
 from zoneinfo import ZoneInfo
-from datetime import datetime
-from time import strftime, gmtime
-
-
 
 IST_ZONE = ZoneInfo("Asia/Kolkata")
 
-def convert_to_IST(dt: datetime):
+def convert_to_ist(dt: datetime):
     return dt.astimezone(IST_ZONE)
 
 

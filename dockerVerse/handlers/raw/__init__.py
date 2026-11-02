@@ -1,4 +1,4 @@
-from . import command as _
-from . import query as _
-from . import combined as _
+from . import combined as combined
+from . import command as command
+from . import query as query
 
