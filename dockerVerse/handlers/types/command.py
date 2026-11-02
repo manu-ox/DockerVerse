@@ -1,7 +1,6 @@
 from . import base
 
 
-
 class StartCommand(base.CommandHandler):
     _command = 'start'
 

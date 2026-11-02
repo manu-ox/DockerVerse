@@ -2,11 +2,13 @@
 Bot event handlers
 """
 
-from .types import Commands, Buttons
-
-
-# Importing for side effects
-from . import raw as _
-
-
+from . import raw as raw  # Importing only for side effects
 from .main import command_handler, query_handler
+from .types import Buttons, Commands
+
+__all__ = [
+    "command_handler",
+    "query_handler",
+    "Buttons",
+    "Commands"
+]

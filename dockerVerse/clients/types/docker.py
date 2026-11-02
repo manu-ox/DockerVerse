@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from dockerVerse.utils import format_time
+
 from .typing import DockerEvent as _DockerEvent
 
 

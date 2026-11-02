@@ -1,21 +1,16 @@
-from .command import (
-    StartCommand,
-    ListCommand
-)
-
-
+from .command import ListCommand, StartCommand
 from .query import (
-    ContainerStartButton,
-    ContainerStopButton,
-    ContainerRestartButton,
     ContainerCompactViewButton,
     ContainerDetailedViewButton,
     ContainerListButton,
     ContainerLogsOptionButton,
-    TimeLogsButton,
+    ContainerRestartButton,
+    ContainerStartButton,
+    ContainerStopButton,
     LineLogsButton,
+    TimeLogsButton,
     UpdateLogsLineButton,
-    UpdateLogsTimeButton
+    UpdateLogsTimeButton,
 )
 
 
@@ -58,4 +53,3 @@ class Buttons:
         update_logs_time,
         update_logs_line,
     ]
-

@@ -1,16 +1,12 @@
-from docker.models.containers import Container
-from docker.models.containers import Container
-from datetime import datetime, timezone
+from datetime import UTC, datetime
+
 from dateutil import parser
-from datetime import datetime
+from docker.models.containers import Container
 
 from dockerVerse.config import is_protected_container
+from dockerVerse.utils import format_time, get_duration_from_seconds, get_status_tag
+
 from .typing import ContainerType
-from dockerVerse.utils import (
-    get_duration_from_seconds,
-    get_status_tag,
-    format_time
-)
 
 
 class ContainerStatus:
@@ -35,7 +31,7 @@ class ContainerUtils:
         elif created:
             time = self._container.attrs['Created']
         else:
-            raise ValueError(f"Invalid Params: 'start', 'exit' or 'create' param is needed")
+            raise ValueError("Invalid Params: 'start', 'exit' or 'create' param is needed")
         
         return parser.isoparse(time)
     
@@ -59,7 +55,7 @@ class ContainerUtils:
 
 
     def get_uptime(self):
-        uptime = datetime.now(timezone.utc) - self.get_state_time(start=True)
+        uptime = datetime.now(UTC) - self.get_state_time(start=True)
         return get_duration_from_seconds(uptime.seconds)
 
 
@@ -81,7 +77,8 @@ class ContainerUtils:
             if host_port_maps:
                 for hm in host_port_maps:
                     # Ignoring IPv6
-                    if hm['HostIp'] == '::': continue
+                    if hm['HostIp'] == '::':
+                        continue
 
                     port_mappings.append(f"{hm['HostIp']}:{hm['HostPort']} => {container_port}")
 

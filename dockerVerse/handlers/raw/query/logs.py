@@ -1,11 +1,10 @@
-from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 from datetime import datetime, timedelta
 
-from dockerVerse.utils import format_time, bold_text
+from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
+
 from dockerVerse import DvClient
 from dockerVerse.handlers import Buttons
-
-
+from dockerVerse.utils import bold_text, format_time
 
 DEFAULT_LOGS_TIME = 15  # Minutes
 DEFAULT_LOGS_LINE = 50
@@ -57,7 +56,7 @@ async def container_line_logs_button_handler(client: DvClient, query: CallbackQu
     container_log = client.docker.get_logs_by_line(container_id, lines)
 
     if not container_log.logs:
-        return await query.answer(f"Nothing in logs yet", show_alert=True)
+        return await query.answer("Nothing in logs yet", show_alert=True)
     
     caption = f"Last {lines} lines of logs"
     

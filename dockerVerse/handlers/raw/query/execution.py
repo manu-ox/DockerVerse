@@ -1,16 +1,16 @@
-from pyrogram.types import Message, CallbackQuery
-from datetime import datetime
-from threading import Thread
 import asyncio
 import re
+from datetime import datetime
+from threading import Thread
+
+from pyrogram.types import CallbackQuery
 
 from dockerVerse import DvClient
+from dockerVerse.clients.types import DvContainer
 from dockerVerse.config import is_protected_container
 from dockerVerse.handlers import Buttons
-from dockerVerse.clients.types import DvContainer
-from dockerVerse.utils import bold_text, error_handler
 from dockerVerse.handlers.types.methods import ContainerMethod
-from dockerVerse.logger import event_log
+from dockerVerse.utils import bold_text, error_handler
 
 
 class Click:
@@ -66,9 +66,9 @@ async def control_execution(client: DvClient, query: CallbackQuery, container: D
         )
 
         time_taken = datetime.now() - start_time
-        await process_message.edit_text((
+        await process_message.edit_text(
             f"`{container.name}` Completed {bold_text(method)} in {time_taken.seconds}s\n"
-        ))
+        )
 
         # Refreshing info with view method by patching
         query.data = re.sub(

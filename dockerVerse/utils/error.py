@@ -1,13 +1,13 @@
-from pyrogram import errors as bot_errors
-from docker import errors as docker_errors
-from functools import wraps
-from typing import Callable
 import traceback
+from collections.abc import Callable
+from functools import wraps
+
+from docker import errors as docker_errors
+from pyrogram import errors as bot_errors
 from requests.exceptions import ConnectionError
 
 from dockerVerse import errors as dv_errors
 from dockerVerse.logger import dv_log
-
 
 
 def error_handler(func: Callable):
@@ -30,7 +30,7 @@ def error_handler(func: Callable):
             pass
         except (bot_errors.QueryIdInvalid, bot_errors.MessageNotModified):
             pass
-        except Exception as e:
+        except Exception:  # noqa: BLE001
             dv_log.error(traceback.format_exc(), exc_info=True)
     
     return wrapper

@@ -1,8 +1,8 @@
-from pyrogram.types import InlineKeyboardButton
-from typing import Callable
-from abc import ABC, abstractmethod
 import re
+from abc import ABC, abstractmethod
+from collections.abc import Callable
 
+from pyrogram.types import InlineKeyboardButton
 
 
 class CommandHandler(ABC):
